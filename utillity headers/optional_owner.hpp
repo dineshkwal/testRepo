@@ -7,15 +7,15 @@ namespace utility
 	class optional_owner
 	{
 	public:
-		optional_owner() noexcept = default;
+		constexpr optional_owner() noexcept = default;
 
-		optional_owner(T* nonOwningT) noexcept
+		constexpr optional_owner(T* nonOwningT) noexcept
 			: mPointer(nonOwningT)
 			, mOwner(false)
 		{
 		}
 
-		optional_owner(T& nonOwningT) noexcept
+		constexpr optional_owner(T& nonOwningT) noexcept
 			: mPointer(&nonOwningT)
 			, mOwner(false)
 		{
@@ -32,7 +32,7 @@ namespace utility
 			reset();
 		}
 
-		optional_owner(optional_owner&& other) noexcept
+		constexpr optional_owner(optional_owner&& other) noexcept
 			: mPointer(other.mPointer)
 			, mOwner(other.mOwner)
 		{
@@ -67,12 +67,12 @@ namespace utility
 			mOwner = false;
 		}
 
-		explicit operator bool() const noexcept
+		constexpr explicit operator bool() const noexcept
 		{
 			return mPointer != nullptr;
 		}
 
-		bool operator!() const noexcept
+		constexpr bool operator!() const noexcept
 		{
 			return mPointer == nullptr;
 		}
@@ -91,12 +91,12 @@ namespace utility
 			return *mPointer;
 		}
 
-		T* get() const noexcept
+		constexpr T* get() const noexcept
 		{
 			return mPointer;
 		}
 
-		bool owner() const noexcept
+		constexpr bool owner() const noexcept
 		{
 			return mOwner;
 		}
